@@ -531,7 +531,7 @@ console.log('category', category)
           <Grid container spacing={2}>
            <Grid item xs={6}>
            <Typography variant="h6"  sx={{ marginBottom: 2 }}>
-              Add Category
+              Add Categories
             </Typography>
             <TextField
               type="text"
