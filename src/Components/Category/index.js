@@ -131,7 +131,7 @@ const AddCategory = (props) => {
   });
   const [linkGroups, setLinkGroups] = useState([]);
   const [linkAttribute, setLinkAttribute] = useState([]);
-
+console.log('linkGroups',linkGroups)
   // const [category, setCategory] = useState({
   //   categoryname: "",
   //   parent: 2,
@@ -280,10 +280,6 @@ console.log('category', category)
     ]);
   }
 }
-
-  useEffect(()=>{
-    console.log(setLinkAttribute)
-  },[setLinkAttribute])
 
   const handleLinkGroupsRemove = (index) => {
     const list = [...linkGroups];
@@ -520,7 +516,8 @@ console.log('category', category)
   let group = category.group
   const indexOf = linkGroups.findIndex(item => item.Group === group);              
   //  console.log("indexOf is", indexOf)
-
+ 
+  
 
   return (
     <Layout>
@@ -658,10 +655,68 @@ console.log('category', category)
             >
               Save Category
             </Button>
+            <Box className="output" >
               
-            <Groups linkGroups={linkGroups} groupOptions = {groupOptions} attributeOptions={attributeOptions} />
+              {  linkGroups.map((value, index) => {
+                //console.log('index data is', index)
+                console.log("value", value)
+                //  console.log("linkGroups", linkGroups)
+                const ValueAddGrps = () => {
+                  let arr = groupOptions.filter(
+                    (items) => value.Group === items.value
+                  );
+                  for (let i = 0; i < arr.length; i++) {
+                    return  (
+                      <Box>
+                        {
+                           "Group : "+ arr[i].label
+                        }    
+                      </Box>
+                      );
+                  }
+                };
+ 
+                return (
+                  <Box key={index} >
+                   {/* {category.group === value.Group ? console.log('ge') : null} */}
+                  
+                    <Box key={index}  sx={{ marginBottom:'5px', }} >
+                      <Groups linkGroups={linkGroups} ValueAddGrps={ValueAddGrps} 
+                       index={index} value={value} handleLinkGroupsRemove={handleLinkGroupsRemove} 
+                        attributeOptions={attributeOptions} handleLinkAttributeRemove={handleLinkAttributeRemove}
+                        setLinkGroups={setLinkGroups}/>
+                        {/* <Box className="groupbox">
+                          <Box className="grouptitle">
+                          {ValueAddGrps()}
+                        </Box>                     
+                        <Box className="groupicon">
+                          <RemoveIcon
+                          sx={{
+                            marginLeft: "20px",
+                            marginTop: "40px",
+                            color: "white",
+                            backgroundColor: "#808080",
+                            borderRadius: "50%",
+                          }}
+                          className="groupremoveicon"
+                          variant="contained"
+                          onClick={() => handleLinkGroupsRemove(index)}
+                          />
+                        </Box>
+                      </Box> */}
 
+                     
+                    </Box>
+                      {/* <SortableAttributeList
+                        items={linkGroups[indexx].Attribute}
+                        onSortEnd={onSortAttributeEnd}
+                      /> */}
+                  </Box>
+                  );
+              })
 
+            } 
+              </Box>
             {/* <Button
               variant="contained"
               className={classes.stundentBtn}

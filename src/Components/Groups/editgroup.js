@@ -9,7 +9,10 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Select from 'react-select';
 import { useDispatch ,useSelector} from 'react-redux';
-import {  UpdateGroup,editGroup} from '../../redux/action/Action'
+import {  UpdateGroup,editGroup} from '../../redux/action/Action';
+import '../../App.css'
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -17,22 +20,18 @@ import {  UpdateGroup,editGroup} from '../../redux/action/Action'
 const useStyle = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: '700px',
     color: 'red',
     display: 'flex',
     alignItems: 'center',
     background: theme.palette.secondary.light,
     justifyContent: 'center',
     zIndex: -99,
-    '& .MuiPaper-root': {
-      width: '39%',
-      height: 'max-content',
-      paddingLeft:'15px',
-      paddingRight:'15px',
-      marginBottom:'10px',
-      padding: `${theme.spacing(2)} 0`,
-      [theme.breakpoints.down('lg')]: {
-        width: '70%',
+    "& .MuiPaper-root": {
+      width: "100%",
+      height: "max-content",
+      padding: `${theme.spacing(4)} 0`,
+      [theme.breakpoints.down("lg")]: {
+        width: "70%",
         padding: `${theme.spacing(2)} 0`,
       },
     },
@@ -124,7 +123,8 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const EditGroup = (props) => {
-  const [message, setMessage] = useState('')  
+  const [message, setMessage] = useState('') 
+  const navigate = useNavigate() 
   // const getAllCategory   = useSelector((state)=>state.allGroupReducer.categoryData)
   const editGroups = useSelector((state)=>state.editGroupReducer.edit)
  console.log('editGroups', editGroups );
@@ -216,13 +216,15 @@ const EditGroup = (props) => {
   let regEx = `!@#$%^&*()_+1234567890-={}|:",./<>~;* ?'${colon}`;
 
 
-  console.log('regEx',group)
+const handleCancel = () =>{
+   navigate('/grouptable')
+}
  
   return (
     <Layout>
       <div className={classes.root}>
       
-        <Paper className={classes.paper} elevation={5}>
+        <Paper className='paper' elevation={0}>
         {message !== '' ? 
         <Box className='hello'>
           <Stack sx={{ width: '100% !important', alignItems:'center'}} >
@@ -231,7 +233,7 @@ const EditGroup = (props) => {
           </Box>
           : null}
           <Box className={classes.inputs}>
-            <Typography variant="h5" component="h5" sx={{ marginBottom: 2 }}>
+            <Typography variant="h5" component="h5" sx={{ marginBottom: 2 }} className='heading'>
               Edit Group
             </Typography>
             
@@ -240,7 +242,7 @@ const EditGroup = (props) => {
               id="outlined-basic"
               label="Group Name"
               variant="outlined"
-              sx={{ width: "90%", marginBottom: 2 }}
+              sx={{ width: "100%", marginBottom: 2 }}
               name="groupname"
               value={group.groupname}
               onChange={handleStudent}
@@ -251,7 +253,7 @@ const EditGroup = (props) => {
               id="outlined-basic"
               label="Display Group Name"
               variant="outlined"
-              sx={{ width: "90%", marginBottom: 2 }}
+              sx={{ width: "100%", marginBottom: 2 }}
               name="groupdisplayname"
               value={group.groupdisplayname}
               onChange={handleStudent}
@@ -287,13 +289,22 @@ const EditGroup = (props) => {
                 )}
               </Box>
             </FormControl>
+            <Box className='btn_group'>
             <Button
               variant="contained"
-              className={classes.stundentBtn}
+              className='btn'
               onClick={handleAddGroup}
             >
               Update
             </Button>
+            <Button
+              variant="contained"
+              className='btn_cancel'
+              onClick={handleCancel}
+            >
+              cancel
+            </Button>
+            </Box>
           </Box>
         </Paper>
       </div>

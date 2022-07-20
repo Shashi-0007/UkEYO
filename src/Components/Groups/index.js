@@ -10,6 +10,7 @@ import { useDispatch ,useSelector} from 'react-redux';
 import {addcategory} from '../../redux/action/Action'
 import {allField} from '../../redux/action/Action'
 import { addGroup } from '../../redux/action/Action';
+import '../../App.css'
 
 
 
@@ -24,14 +25,12 @@ const useStyle = makeStyles((theme) => ({
     background: theme.palette.secondary.light,
     justifyContent: 'center',
     zIndex: -99,
-    '& .MuiPaper-root': {
-      width: '100%',
-      marginLeft:'18%',
-      marginTop: "10%",
-      height: 'max-content',
+    "& .MuiPaper-root": {
+      width: "100%",
+      height: "max-content",
       padding: `${theme.spacing(4)} 0`,
-      [theme.breakpoints.down('lg')]: {
-        width: '70%',
+      [theme.breakpoints.down("lg")]: {
+        width: "70%",
         padding: `${theme.spacing(2)} 0`,
       },
     },
@@ -53,7 +52,7 @@ const useStyle = makeStyles((theme) => ({
       color: theme.palette.secondary.light,
     },
     '& .css-1nrlq1o-MuiFormControl-root': {
-      width: '90%',
+    
       display: 'flex',
       justifyContent: 'flex-start',
       marginBottom: theme.spacing(2),
@@ -101,10 +100,10 @@ const useStyle = makeStyles((theme) => ({
  
  
   },
-  statusDiv:{
-    display:'flex',
-    alignItems:'center',
-  },
+  // statusDiv:{
+  //   display:'flex',
+  //   alignItems:'center',
+  // },
   active:{
     fontSize: '17px!important',
       fontWeight: '500!important',
@@ -210,9 +209,10 @@ const AddGroup = (props) => {
   return (
     <Layout>
       <div className={classes.root}>
-        <Paper className={classes.paper} elevation={0}>
+
+        <Paper className='paper' elevation={0}>
           <Box className={classes.inputs}>
-            <Typography variant="h5" component="h5" sx={{ marginBottom: 2 }}>
+            <Typography variant="h5" component="h5"  className='heading'>
               Add Group
             </Typography>
 
@@ -221,7 +221,7 @@ const AddGroup = (props) => {
               id="outlined-basic"
               label="Group Name"
               variant="outlined"
-              sx={{ width: "90%", marginBottom: 2 }}
+              sx={{ width: "100%", marginBottom: 2 }}
               name="groupname"
               value={group.groupname}
               onChange={handleStudent}
@@ -232,7 +232,7 @@ const AddGroup = (props) => {
               id="outlined-basic"
               label="Display Group Name"
               variant="outlined"
-              sx={{ width: "90%", marginBottom: 2 }}
+              sx={{ width: "100%", marginBottom: 2 }}
               name="groupdisplayname"
               value={group.groupdisplayname}
               onChange={handleStudent}
@@ -245,7 +245,7 @@ const AddGroup = (props) => {
               <FormLabel id="demo-row-radio-buttons-group-label">
                 Status
               </FormLabel>
-              <Box className={classes.statusDiv}>
+              <Box className='statusDiv'>
                 <Switch
                   checked={group.status}
                   name="status"
@@ -276,16 +276,29 @@ const AddGroup = (props) => {
                 )}
               </Box>
             </FormControl>
+            <Box>
             <Button
               variant="contained"
-              className={classes.stundentBtn}
+          
               onClick={handleAddGroup}
+              sx={{ background:'#138b13'}}
+             className='btn'
             >
-              Add
+              Save
             </Button>
+            <Button
+              variant="contained"
+              onClick={handleAddGroup}
+              className='btn_cancel'
+              sx={{marginLeft:"20px ", background:'#ec4343'}}
+            >
+              Cancel
+            </Button>
+            </Box>
           </Box>
         </Paper>
-      </div>
+        </div>
+  
     </Layout>
   );
 };

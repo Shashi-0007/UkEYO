@@ -79,37 +79,16 @@ const AttributeTable = () => {
            selector: "feild_name",
            sortable: true
          },
-        //  {
-        //    name: "Attribute Type",
-        //    selector: "feild_type",
-        //    sortable: true
-        //  },
-         {
-           name: "Status",
-           selector: 'status',
-           sortable: true,
-           cell: ((row)=>{
-               
-             if(row.status==="0"){
-               return 'inactive'
-             }else if(row.status==="1"){
-               return 'active'
-             }else{
-             return  row.status
-             }
-           })
-         },
-         {
-           name : "Action",
-           selector: 'id',
-           sortable: false,
-           cell: (d) => [
-            <EditIcon onClick={()=>handleEdit(d.id)} />,
-            <DeleteIcon onClick={() => handleDelete(d.id)} />,
-          ],
-           
-         }
-       
+         , {
+          name: "Name Space",
+          selector: "feild_namespace",
+          sortable: true
+        },
+        ,{
+          name: "type",
+          selector: "feild_type",
+          sortable: true
+        },
        ];
    
 
