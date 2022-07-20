@@ -32,24 +32,33 @@ import AttributeComponent from "./attributeComponent";
     dragItem.current = null;
     dragOverItem.current = null;
     setList(copyListItems);
+    props.linkGroups(copyListItems)
     console.log("copyListItems", copyListItems)
 
   };
 
-  // console.log("okkkkk", props.linkGroups)
+  //  console.log("linkgroup is", props.linkGroups)
   const handleLinkGroupsRemove = (index) => {
-    console.log('Index', index)
-    const list1 = [...list];
-    list1.splice(index, 1);
-    setList(list1);
-  console.log("okkkkk", props.linkGroups)
+    // console.log('Index', index)
+    // const list = [...list];
+    // const list1 = [...list];
+    list.splice(index, 1);
+    setList(list);
+    console.log("okkkkk list is", list)
+    // console.log(" list1 is", list1)
 
   };
 
   useEffect(() => {
     setList(props.linkGroups);
  }, [props]);
-// console.log('list',list)
+ 
+ useEffect(() => {
+}, [list]);
+
+    console.log('list is',list)
+   console.log("linkgroup data is", props.linkGroups)
+
   return (
 
     <>

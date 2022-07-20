@@ -63,15 +63,17 @@ const AttributeComponent = (props) => {
         console.log('grp', grp);
     }
   
- 
-
+  //   useEffect(() => {
+  //     setList(props.linkGroups);
+  //  }, [props]);
+   console.log('list is', list);
 
 
   return (
     <>
     {list !== ''? 
                list.map((subItems, subIndex)=>{
-                console.log("props.value.Group",subItems)
+                // console.log("props.value.Group",subItems)
                 const ValueAttribute = () => {
                   let arr = props.attributeOptions.filter(
                     (items) => subItems.Attribute === items.value
@@ -106,7 +108,7 @@ const AttributeComponent = (props) => {
                                 }}
                                 className="groupremoveicon"
                                 variant="contained"
-                                onClick={() => deleteAttrb(subItems.Attribute, props.value.Group)}
+                                // onClick={() => deleteAttrb(subItems.Attribute, props.value.Group)}
                             />
                         </Box>
                     </Box>
