@@ -10,8 +10,9 @@ const AllIntData   = {allData :[]}
 const EditIntData  = {edit :[]}
 const DeleteInitData = {delete :[]}
 const UpdateInitData = {update :[]}
+const toggleSideBar = {togglingAll:false}
 
-const togglingReducer = (state={togglingAll:true},action) => {
+const togglingReducer = (state=toggleSideBar,action) => {
     switch(action.type){
         case TOGGLE_ALL : 
         return{
