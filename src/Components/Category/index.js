@@ -280,15 +280,7 @@ const AddCategory = (props) => {
     console.log("atatatata",linkGroups)
   };
 
-  // useEffect(() => {
-  //   // debugger
-  //   setList(linkAttribute);
-  // }, [linkAttribute]);
 
-  useEffect(() => {
-    // debugger
-    setList(linkGroups);
-  }, [linkGroups]);
 
   const handleLinkGroupsRemove = (index) => {
     const list = [...linkGroups];
@@ -301,10 +293,12 @@ const AddCategory = (props) => {
       itemis.Attribute.map((subItemis, index) => {
         if (itemis.Group === Group) {
           if (subItemis.Attribute === Attribute) {
-            setLinkAttribute([
-              ...linkAttribute,
-              { Group: Group, Attribute: itemis.Attribute.splice(index, 1) },
-            ]);
+            // setLinkAttribute([
+            //   ...linkAttribute,
+            //   { Group: Group, Attribute: itemis.Attribute.splice(index, 1) },
+            // ]);
+            list.splice(index, 1);
+            setList(list);
           }
         }
       })
@@ -330,7 +324,7 @@ const AddCategory = (props) => {
 
     // .then(()=> Navigate('/linkgroup'))
   };
-
+console.log('list after updating is', list);
 
   const dragStart = (e, position) => {
     dragItem.current = position;
@@ -385,6 +379,16 @@ const AddCategory = (props) => {
     dispatch(allField());
     dispatch(allCategories());
   }, []);
+
+    // useEffect(() => {
+  //   // debugger
+  //   setList(linkAttribute);
+  // }, [linkAttribute]);
+
+  useEffect(() => {
+    // debugger
+    setList(linkAttribute);
+  }, [linkAttribute]);
 
   return (
     <Layout>
@@ -534,10 +538,10 @@ const AddCategory = (props) => {
                       <Box
                         key={index}
                         className="maingroup"
-                        onDragStart={(e) => dragStart(e, index)}
-                        onDragEnter={(e) => dragEnter(e, index)}
-                        onDragEnd={drop}
-                        draggable
+                        // onDragStart={(e) => dragStart(e, index)}
+                        // onDragEnter={(e) => dragEnter(e, index)}
+                        // onDragEnd={drop}
+                        // draggable
                       >
                         <Box className="groupbox">
                           <Box className="grouptitle">{ValueAddGrps()}</Box>
@@ -556,17 +560,17 @@ const AddCategory = (props) => {
                             />
                           </Box>
                         </Box>
-                        {/* <AttributeComponent
+                        <AttributeComponent
                           value={value}
                           attributeOptions={attributeOptions}
                           linkGroups={linkGroups}
                           // setLinkGroups={setLinkGroups}
                           // linkGroups={value.Group}
                           // onDelete={(attribite,group)=deleteAttrb(attribite,group)}
-                        /> */}
-                        {value.Attribute !== ""
+                        />
+                        {/* {list !== ""
                           
-                          ? value.Attribute?.map((subItems, subIndex) => {
+                          ? list?.map((subItems, subIndex) => {
                             // debugger;
                               const ValueAttribute = () => {
                                 let arr = attributeOptions.filter(
@@ -617,13 +621,13 @@ const AddCategory = (props) => {
                                           value.Group
                                         )
                                       }
-                                      // onClick={() => deleteAttrb(subItems.Attribute, value.Group)}
+                                      //  onClick={() => deleteAttrb(subItems.Attribute, value.Group)}
                                     />
                                   </Box>
                                 </Box>
                               );
                             })
-                          : null}
+                          : null} */}
                       </Box>
                     );
                   })}
