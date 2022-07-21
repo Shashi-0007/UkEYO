@@ -46,13 +46,18 @@ const AttributeComponent = (props) => {
                     console.log('subItemis', subItemis)
                 if (itemis.Group == Group) {
                     if (subItemis.Attribute === Attribute) {
-                        setList([
-                        ...list,
-                        { Group: Group, Attribute: itemis.Attribute.splice(index, 1) },
-                    ]);
+                      list.splice(index, 1);
+                      // setList(list);
+                      
+                    //     setList([
+                    //     ...list,
+                    //     { Group: Group, Attribute: itemis.Attribute.splice(index, 1) },
+                    // ]);
                     }
                 }
                 })
+   console.log('list after delete is', list);
+
             }
        );
        //console.log('linkGroups is tada', linkGroups);
@@ -63,9 +68,13 @@ const AttributeComponent = (props) => {
         console.log('grp', grp);
     }
   
-  //   useEffect(() => {
-  //     setList(props.linkGroups);
-  //  }, [props]);
+    useEffect(() => {
+      setList(props.value.Attribute);
+   }, [props]);
+
+   useEffect(() => {
+   },[list]);
+ 
    console.log('list is', list);
 
 
@@ -75,16 +84,11 @@ const AttributeComponent = (props) => {
                list.map((subItems, subIndex)=>{
                 // console.log("props.value.Group",subItems)
                 const ValueAttribute = () => {
-                  let arr = props.attributeOptions.filter(
-                    (items) => subItems.Attribute === items.value
-                  );
-                  for (let i = 0; i < arr.length; i++) {
-                    return  (
-                      <Box>
-                        { `${subIndex+1}. :  ${arr[i].label}` }   
-                      </Box>
-                      );
-                  }
+                  let k = props.attributeOptions.find((items)=>subItems.Attribute === items.value).label
+                  // console.log("kkkkk",k)
+                  return <Box>{ `${subIndex+1}. :  ${k}`}</Box>;
+
+
                 };
                   return (
                     <Box className="mainattribute"
@@ -109,6 +113,8 @@ const AttributeComponent = (props) => {
                                 className="groupremoveicon"
                                 variant="contained"
                                 // onClick={() => deleteAttrb(subItems.Attribute, props.value.Group)}
+                                onClick={() => handleLinkAttributeRemove(subItems.Attribute, props.value.Group)}
+
                             />
                         </Box>
                     </Box>
