@@ -13,18 +13,25 @@ import LinkIcon from '@mui/icons-material/Link';
 import { NavLink } from 'react-router-dom';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CircleIcon from '@mui/icons-material/Circle';
+import { useSelector } from 'react-redux';
 
 
 
 
 const SideBar = ({ sidebarData }) => {
 
+    const toggleAppBar = useSelector((state)=>state.togglingReducer.togglingAll)
 
-    const [open, setOpen] = useState()
+    const [open, setOpen] = useState(false)
     const handleClick = () => {
-        setOpen(!open)
+        if(toggleAppBar){
+            setOpen(!open)
+        }else{
+            setOpen(false) 
+        }
+      
     }
-console.log('sidebarData',sidebarData.package[0].text===''? 'true' : 'false')
+
     return (
         <>
             <Box >
@@ -34,7 +41,7 @@ console.log('sidebarData',sidebarData.package[0].text===''? 'true' : 'false')
                     aria-labelledby="nested-list-subheader"
                 >
                     <>
-                        <ListItemButton onClick={() => handleClick(sidebarData.id)} component={NavLink} to={`/attributestable`}>
+                        <ListItemButton onClick={() => handleClick()} component={NavLink}  to={sidebarData.package[0].text==='' && `/attributestable`}>
                             <ListItemIcon >
                                 {sidebarData.icon}
                             </ListItemIcon>

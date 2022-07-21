@@ -6,11 +6,11 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import { Paper } from '@mui/material';
 import "react-data-table-component-extensions/dist/index.css";
 import { useSelector,useDispatch } from 'react-redux';
-import { toggle } from '../../redux/action/Action';
 import {allCategories , deletefield ,editField , allField} from '../../redux/action/Action'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
+import "../../App.css"
 
 
 
@@ -94,7 +94,6 @@ const AttributeTable = () => {
 
       useEffect(()=>{
           setData(getAllAttributes)
-          dispatch(toggle())
       },[getAllAttributes])
        
    
@@ -121,7 +120,7 @@ const AttributeTable = () => {
      
     <>
     <Layout>
-       <div className={classes.root} >
+       <div className='root' >
 
           <div className={classes.student}>
               <Paper variant='outlined' className={classes.table}

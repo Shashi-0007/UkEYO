@@ -6,23 +6,24 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import CategoryIcon from '@mui/icons-material/Category';
 import SideBar from '../SideBar';
 import { Box } from '@mui/material';
-import {makeStyles} from '@mui/styles'
+import {makeStyles} from '@mui/styles';
+import { useSelector,useDispatch } from 'react-redux';
+import {toggle} from '../../redux/action/Action'
 
 
 const useStyle = makeStyles((theme)=>({
    root:{
-    height:'100vh',
-     position: 'absolute',
-     top:0,
-     left:-300,
-     width:300 ,
+    height:'90%',
+   position:'absolute',
+    overflow:'hidden',
+    width:300,
      background:'#fff',
      zIndex:999,
-    transition:'1s all'
+    transition:'.3s all',
+    background:'#dbdada',
    },
    image:{
        textAlign:'center',
-      marginBottom:theme.spacing(1),
       marginTop:theme.spacing(2),
    }
 }))
@@ -40,11 +41,20 @@ const schoolData = [
    
 ]
 const MainSidebar = () => {
-    
+    const toggleAppBar = useSelector((state)=>state.togglingReducer.togglingAll)
+    const dispatch = useDispatch()
     const classes = useStyle();
+    const handleToggle = () => {
+        if(toggleAppBar){
+            dispatch(toggle)
+        }else{
+            dispatch(toggle())
+        }
+
+     }
     return (
-            <Box className={classes.root}  >
-                {schoolData.map((elem, i) => <SideBar key={i} sidebarData={elem} />)}
+            <Box className={classes.root} sx={{width: toggleAppBar ? 300 : 60}}  onClick={handleToggle}>
+                {schoolData.map((elem, i) => <SideBar key={i}  sidebarData={elem} />)}
             </Box>
     )
 }

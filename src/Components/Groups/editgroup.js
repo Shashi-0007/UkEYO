@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Box, Button, Typography, TextField } from '@mui/material';
+import { Paper, Box, Button, Typography, TextField,Container ,Grid} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Layout from '../../Pages/Layout';
 import FormLabel from '@mui/material/FormLabel';
@@ -127,7 +127,7 @@ const EditGroup = (props) => {
   const navigate = useNavigate() 
   // const getAllCategory   = useSelector((state)=>state.allGroupReducer.categoryData)
   const editGroups = useSelector((state)=>state.editGroupReducer.edit)
- console.log('editGroups', editGroups );
+  const toggleState = useSelector((state)=>state.togglingReducer.togglingAll)
 
   const [txt, setTxt] = useState('');
 
@@ -223,8 +223,8 @@ const handleCancel = () =>{
   return (
     <Layout>
       <div className={classes.root}>
-      
-        <Paper className='paper' elevation={0}>
+      <Container fixed>
+        <Paper className='paper' elevation={0}   style={{ position: 'absolute', right: 0, left: toggleState ? 300 : 0, width:toggleState ? '80%' : '90%' ,transition: '.3s all', }}>
         {message !== '' ? 
         <Box className='hello'>
           <Stack sx={{ width: '100% !important', alignItems:'center'}} >
@@ -236,8 +236,10 @@ const handleCancel = () =>{
             <Typography variant="h5" component="h5" sx={{ marginBottom: 2 }} className='heading'>
               Edit Group
             </Typography>
-            
-            <TextField
+          
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                <TextField
               type="text"
               id="outlined-basic"
               label="Group Name"
@@ -248,7 +250,9 @@ const handleCancel = () =>{
               onChange={handleStudent}
               
             />
-               <TextField
+                </Grid>
+                <Grid item xs={6}>
+                <TextField
               type="text"
               id="outlined-basic"
               label="Display Group Name"
@@ -262,6 +266,8 @@ const handleCancel = () =>{
               // }
               
             />
+                </Grid>
+              </Grid>
             <FormControl className={classes.radionBtns}>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 Status
@@ -307,6 +313,7 @@ const handleCancel = () =>{
             </Box>
           </Box>
         </Paper>
+        </Container>
       </div>
     </Layout>
   );

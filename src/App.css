@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -6,10 +7,14 @@
   height: 40vmin;
   pointer-events: none;
 }
+.MuiContainer-root{
+  /* text-align: center!important; */
+}
 .paper{
 
+
   /* padding-top: 30px; */
-  padding: 100px 40px 0 40px!important;
+  /* padding: 100px 40px 0 40px!important; */
 }
 .makeStyles-root-38{
   width: 100%;
@@ -18,6 +23,7 @@
   text-align: start!important;
   width: 100%;
   padding-bottom:10px ;
+
 }
 .btn_group{
   display: flex;
@@ -35,12 +41,16 @@
   align-items:center;
   width: 100%!important;
 }
-.makeStyles-root-1,.makeStyles-root-11,.makeStyles-root-13{
+.makeStyles-root-1,.root{
   width: 100%;
-  padding-top: 103px!important;
+  padding-top: 48px!important;
 }
 .css-1nrlq1o-MuiFormControl-root{
   width: 100%;
+}
+.routes_data{
+  width: 40%!important;
+  float: right!important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
