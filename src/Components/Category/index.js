@@ -324,8 +324,9 @@ const AddCategory = (props) => {
 
   const handleAddCategory = () => {
     let Data = { category: category, link: linkGroups };
+    console.log('data is', Data)
 
-    dispatch(addcategory(Data)).then(() => Navigate("/categorytable"));
+    // dispatch(addcategory(Data)).then(() => Navigate("/categorytable"));
 
     // .then(()=> Navigate('/linkgroup'))
   };
